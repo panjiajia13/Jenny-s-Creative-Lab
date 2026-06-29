@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<style>
+  @font-face{font-family:'Fraunces';src:url('../assets/fonts/Fraunces.ttf') format('truetype');font-weight:400 900;font-style:normal;font-display:block;}
+  @font-face{font-family:'Fraunces';src:url('../assets/fonts/Fraunces-Italic.ttf') format('truetype');font-weight:400 900;font-style:italic;font-display:block;}
+  @font-face{font-family:'Hanken Grotesk';src:url('../assets/fonts/HankenGrotesk.ttf') format('truetype');font-weight:300 800;font-style:normal;font-display:block;}
+  :root{--cream:#F4EFE3;--cream2:#EDE6D6;--cognac:#A85C2E;--charcoal:#352F26;--pewter:#8B8579;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{background:#ddd;}
+  #stage{position:relative;width:1600px;height:900px;overflow:hidden;
+    background:radial-gradient(120% 120% at 50% 0%, #FBF7EE 0%, var(--cream) 45%, var(--cream2) 100%);
+    font-family:'Hanken Grotesk',sans-serif;color:var(--charcoal);}
+  #grain{position:absolute;inset:0;opacity:.05;mix-blend-mode:multiply;pointer-events:none;}
+  .head{position:absolute;top:54px;left:0;right:0;text-align:center;z-index:5;}
+  .eyebrow{font-weight:700;font-size:19px;letter-spacing:.34em;text-transform:uppercase;color:var(--cognac);margin-bottom:14px;}
+  .title{font-family:'Fraunces';font-weight:600;font-size:60px;letter-spacing:-.01em;}
+  .title .it{font-style:italic;font-weight:500;}
+  .cap{position:absolute;bottom:42px;left:0;right:0;text-align:center;color:var(--pewter);
+    font-weight:600;font-size:18px;letter-spacing:.18em;text-transform:uppercase;z-index:5;}
+  /* timeline */
+  svg{position:absolute;inset:0;}
+  .item{position:absolute;width:206px;text-align:center;z-index:4;}
+  .yr{font-family:'Fraunces';font-weight:700;font-size:30px;color:var(--cognac);line-height:1;}
+  .nm{font-family:'Fraunces';font-weight:600;font-size:21px;line-height:1.12;margin:7px 0 6px;}
+  .ds{font-family:'Hanken Grotesk';font-style:italic;font-size:16px;color:#6b6253;line-height:1.25;}
+</style>
+</head>
+<body>
+  <div id="stage">
+    <div class="head">
+      <div class="eyebrow">Jenny's Creative Lab</div>
+      <div class="title">A Sound in <span class="it">Seven Records</span></div>
+    </div>
+
+    <svg width="1600" height="900" viewBox="0 0 1600 900">
+      <!-- spine -->
+      <line x1="90" y1="470" x2="1510" y2="470" stroke="#352F26" stroke-opacity=".22" stroke-width="3"/>
+      <!-- nodes drawn by script-mirrored coords -->
+      <g id="nodes"></g>
+    </svg>
+    <div id="items"></div>
+    <div id="grain"></div>
+
+    <div class="cap">2006 &mdash; 2022 &nbsp;&bull;&nbsp; Garage rock to art rock</div>
+  </div>
+
+  <script>
+    const SPINE=470, X0=200, GAP=200;            // 7 nodes: 200..1400
+    const data=[
+      {yr:'2006', nm:'Whatever People Say I Am', ds:'garage rock', c:'#A85C2E', up:true},
+      {yr:'2007', nm:'Favourite Worst Nightmare', ds:'faster, meaner', c:'#B06A3A', up:false},
+      {yr:'2009', nm:'Humbug', ds:'desert rock', c:'#9C6B4E', up:true},
+      {yr:'2011', nm:'Suck It and See', ds:'melodic guitar-pop', c:'#8A6E63', up:false},
+      {yr:'2013', nm:'AM', ds:'bluesy, nocturnal', c:'#6E6B73', up:true},
+      {yr:'2018', nm:'Tranquility Base Hotel & Casino', ds:'lounge piano', c:'#5E6E78', up:false},
+      {yr:'2022', nm:'The Car', ds:'string-soaked art-rock', c:'#4F6168', up:true},
+    ];
+    const NS='http://www.w3.org/2000/svg';
+    const g=document.getElementById('nodes');
+    const items=document.getElementById('items');
+    data.forEach((d,i)=>{
+      const x=X0+i*GAP;
+      // connector
+      const yCard = d.up ? SPINE-150 : SPINE+150;
+      const ln=document.createElementNS(NS,'line');
+      ln.setAttribute('x1',x);ln.setAttribute('y1',SPINE);
+      ln.setAttribute('x2',x);ln.setAttribute('y2',d.up?SPINE-58:SPINE+58);
+      ln.setAttribute('stroke',d.c);ln.setAttribute('stroke-width','2.5');ln.setAttribute('stroke-opacity','.55');
+      g.appendChild(ln);
+      // vinyl node
+      const disc=document.createElementNS(NS,'circle');
+      disc.setAttribute('cx',x);disc.setAttribute('cy',SPINE);disc.setAttribute('r','22');
+      disc.setAttribute('fill','#141416');g.appendChild(disc);
+      const groove=document.createElementNS(NS,'circle');
+      groove.setAttribute('cx',x);groove.setAttribute('cy',SPINE);groove.setAttribute('r','16');
+      groove.setAttribute('fill','none');groove.setAttribute('stroke','#000');groove.setAttribute('stroke-opacity','.5');g.appendChild(groove);
+      const label=document.createElementNS(NS,'circle');
+      label.setAttribute('cx',x);label.setAttribute('cy',SPINE);label.setAttribute('r','8');
+      label.setAttribute('fill',d.c);g.appendChild(label);
+      const hole=document.createElementNS(NS,'circle');
+      hole.setAttribute('cx',x);hole.setAttribute('cy',SPINE);hole.setAttribute('r','2');
+      hole.setAttribute('fill','#F4EFE3');g.appendChild(hole);
+      // text card
+      const div=document.createElement('div');
+      div.className='item';
+      div.style.left=(x-103)+'px';
+      div.innerHTML=`<div class="yr">${d.yr}</div><div class="nm">${d.nm}</div><div class="ds">${d.ds}</div>`;
+      items.appendChild(div);
+      // position vertically after render-ish: place above or below
+      div.style.top = (d.up ? (SPINE-72) : (SPINE+72)) + 'px';
+      if(d.up){ div.style.top='auto'; div.style.bottom=(900-(SPINE-70))+'px'; }
+    });
+
+    // grain overlay
+    const svgGrain="data:image/svg+xml;utf8,"+encodeURIComponent(
+      "<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'>"+
+      "<filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/>"+
+      "<feColorMatrix type='saturate' values='0'/></filter>"+
+      "<rect width='240' height='240' filter='url(#n)'/></svg>");
+    document.getElementById('grain').style.background="url(\""+svgGrain+"\")";
+  </script>
+</body>
+</html>
