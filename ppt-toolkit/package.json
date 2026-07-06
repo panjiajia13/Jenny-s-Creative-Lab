@@ -1,0 +1,15 @@
+{
+  "name": "ppt-toolkit",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Build on-brand .pptx decks (with Chromium-based visual QA) from a single deck module.",
+  "bin": {
+    "ppt-render": "render.js"
+  },
+  "scripts": {
+    "example": "cd examples/pawtune && node ../../render.js ./deck.js PAWTUNE-Product-Introduction"
+  },
+  "dependencies": {
+    "pptxgenjs": "^3.12.0"
+  }
+}
