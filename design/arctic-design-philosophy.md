@@ -1,0 +1,13 @@
+# Grooved Light — a design philosophy
+
+**Movement:** *Grooved Light.* The visual language of an object photographed, not drawn. Analog materiality rendered with the patience of a still-life photographer working under a single warm lamp.
+
+**Space and form.** One hero object holds the frame; everything else is breath. A record is not a flat black circle — it is a machined surface that gathers light, throws a soft contact shadow, and recedes into shallow focus. Negative space is not empty; it is the warm, graded air of a photographed tabletop. Crowding is the enemy. A single well-lit form, given room, reads as expensive; a busy composition reads as a template. The work must feel composed the way a master photographer composes — subtract until only the essential remains, then light it perfectly.
+
+**Color and material.** A restrained warm palette — cream light, cognac warmth, deep charcoal, pewter shadow — graded like film stock, never flat digital fills. Blacks carry a faint warmth; highlights bloom rather than clip. A single directional light source governs every specular sweep and every shadow, so the whole surface obeys one physics. The vinyl catches a crescent of light exactly where a real record would; the label glows with its own soft radial life. This is painstaking, master-level material honesty: every groove, every rim reflection placed as though observed, not invented.
+
+**Scale and rhythm.** Typography is set with editorial confidence — large, quiet display serif for the human gesture; small, wide-tracked sans for the clinical labels. Type never fights the object; it occupies its own calm column. In sequence, rhythm comes from repetition with variation: the same machined disc, its label shifting hue across time, marking a slow chromatic migration from warm origin to cool horizon.
+
+**Composition and texture.** Fine film grain sits over everything like the tooth of real paper. A soft vignette pulls the eye inward; a single warm light-leak breathes in one corner; a scatter of near-invisible dust reminds you this was *shot*, not generated. Every layer is subtle — felt, not seen. The result should look like it took countless hours: a photograph a specialist lit, exposed, and graded with painstaking care, the product of deep craft rather than a filter dropped on a flat vector.
+
+**The invisible subject.** Woven quietly through form and colour: two decades of one restless band, traced not through faces or copyrighted covers but through the medium itself — the record, warming at the origin, cooling toward art-rock horizons. Those who know will feel it; everyone else simply sees a masterfully lit analog still.
