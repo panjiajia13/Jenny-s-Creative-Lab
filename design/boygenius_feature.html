@@ -6,111 +6,132 @@
   @font-face{font-family:'Fraunces';src:url('../assets/fonts/Fraunces.ttf') format('truetype');font-weight:400 900;font-style:normal;font-display:block;}
   @font-face{font-family:'Fraunces';src:url('../assets/fonts/Fraunces-Italic.ttf') format('truetype');font-weight:400 900;font-style:italic;font-display:block;}
   @font-face{font-family:'Hanken Grotesk';src:url('../assets/fonts/HankenGrotesk.ttf') format('truetype');font-weight:300 800;font-style:normal;font-display:block;}
-  :root{--cream:#F2ECDD; --cognac:#C77D4A; --pewter:#A79C88;}
+  :root{--ink:#26221b; --sub:#5f584b; --accent:#3EA96B; --pewter:#9a917f;}
   *{margin:0;padding:0;box-sizing:border-box;}
-  html,body{background:#000;}
+  html,body{background:#eee;}
   #stage{position:relative;width:1600px;height:900px;overflow:hidden;
-    font-family:'Hanken Grotesk',sans-serif;color:var(--cream);
+    font-family:'Hanken Grotesk',sans-serif;color:var(--ink);
     background:
-      radial-gradient(90% 70% at 50% 2%, #241a12 0%, #140f0a 40%, #0A0806 100%);}
-  svg.light{position:absolute;inset:0;mix-blend-mode:screen;}
-  #floorsheen{position:absolute;left:0;right:0;bottom:0;height:230px;pointer-events:none;
-    background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(20,14,9,.35) 60%, rgba(8,6,5,.7) 100%);}
-  #vignette{position:absolute;inset:0;pointer-events:none;
-    background:radial-gradient(110% 100% at 50% 42%, rgba(0,0,0,0) 46%, rgba(0,0,0,.5) 100%);}
-  #grain{position:absolute;inset:0;opacity:.09;mix-blend-mode:overlay;pointer-events:none;}
-  .copy{position:absolute;left:96px;bottom:92px;z-index:8;}
-  .eyebrow{font-weight:700;font-size:19px;letter-spacing:.34em;text-transform:uppercase;color:var(--cognac);margin-bottom:22px;}
+      radial-gradient(120% 120% at 78% 30%, #FFFFFF 0%, #FBF8F1 40%, #F1EADC 100%);}
+  #bloom{position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(40% 46% at 70% 20%, rgba(120,190,230,.16), rgba(120,190,230,0) 60%);}
+  #grain{position:absolute;inset:0;opacity:.05;mix-blend-mode:multiply;pointer-events:none;}
+  svg.art{position:absolute;inset:0;}
+  .copy{position:absolute;left:100px;top:0;height:900px;width:660px;z-index:8;
+    display:flex;flex-direction:column;justify-content:center;}
+  .eyebrow{font-weight:800;font-size:20px;letter-spacing:.30em;text-transform:uppercase;color:var(--accent);margin-bottom:26px;}
   .eyebrow .dot{color:var(--pewter);margin:0 12px;}
-  h1{font-family:'Fraunces';font-weight:500;font-size:96px;line-height:.9;letter-spacing:-.02em;color:#FBF6EC;
-     text-shadow:0 2px 40px rgba(255,226,180,.35), 0 1px 3px rgba(0,0,0,.5);}
-  .sub{font-family:'Fraunces';font-style:italic;font-weight:400;font-size:34px;color:var(--pewter);margin-top:16px;letter-spacing:.005em;}
+  h1{font-family:'Fraunces';font-weight:600;font-size:118px;line-height:.9;letter-spacing:-.03em;color:var(--ink);}
+  .sub{font-family:'Fraunces';font-style:italic;font-weight:400;font-size:46px;color:var(--sub);margin-top:14px;}
+  .kicker{margin-top:40px;font-weight:500;font-size:25px;line-height:1.4;color:var(--sub);max-width:430px;}
 </style>
 </head>
 <body>
   <div id="stage">
-    <svg class="light" width="1600" height="900" viewBox="0 0 1600 900" fill="none">
+    <svg class="art" width="1600" height="900" viewBox="0 0 1600 900" fill="none">
       <defs>
-        <filter id="soft" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="26"/></filter>
-        <filter id="softer" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="46"/></filter>
-
-        <linearGradient id="beamA" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="rgba(244,198,120,0.55)"/>
-          <stop offset="42%" stop-color="rgba(240,190,120,0.24)"/>
-          <stop offset="100%" stop-color="rgba(240,190,120,0.0)"/>
+        <filter id="softsh" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="30"/></filter>
+        <filter id="rbblur" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="15"/></filter>
+        <filter id="beamblur" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="6"/></filter>
+        <linearGradient id="spectrum" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"  stop-color="rgba(233,86,80,0)"/>
+          <stop offset="12%" stop-color="rgba(233,86,80,0.80)"/>
+          <stop offset="29%" stop-color="rgba(241,158,72,0.78)"/>
+          <stop offset="45%" stop-color="rgba(243,206,92,0.74)"/>
+          <stop offset="61%" stop-color="rgba(110,193,120,0.74)"/>
+          <stop offset="77%" stop-color="rgba(86,150,214,0.78)"/>
+          <stop offset="90%" stop-color="rgba(150,110,205,0.78)"/>
+          <stop offset="100%" stop-color="rgba(150,110,205,0)"/>
         </linearGradient>
-        <linearGradient id="beamB" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="rgba(230,152,156,0.52)"/>
-          <stop offset="42%" stop-color="rgba(226,150,152,0.22)"/>
-          <stop offset="100%" stop-color="rgba(226,150,152,0.0)"/>
-        </linearGradient>
-        <linearGradient id="beamC" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="rgba(150,182,208,0.50)"/>
-          <stop offset="42%" stop-color="rgba(150,180,206,0.22)"/>
-          <stop offset="100%" stop-color="rgba(150,180,206,0.0)"/>
-        </linearGradient>
-
-        <radialGradient id="haze" cx="50%" cy="0%" r="70%">
-          <stop offset="0%" stop-color="rgba(255,232,190,0.34)"/>
-          <stop offset="55%" stop-color="rgba(255,224,180,0.06)"/>
-          <stop offset="100%" stop-color="rgba(255,224,180,0)"/>
-        </radialGradient>
-        <radialGradient id="core" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="rgba(255,244,224,0.55)"/>
-          <stop offset="45%" stop-color="rgba(255,228,190,0.16)"/>
-          <stop offset="100%" stop-color="rgba(255,228,190,0)"/>
-        </radialGradient>
       </defs>
-
-      <!-- upper haze / light source -->
-      <ellipse cx="800" cy="20" rx="620" ry="240" fill="url(#haze)"/>
-
-      <!-- three beams braiding through a common core -->
-      <g filter="url(#soft)">
-        <polygon points="602,-60 638,-60 726,864 372,864" fill="url(#beamA)"/>
-        <polygon points="782,-60 818,-60 992,884 612,884" fill="url(#beamB)"/>
-        <polygon points="962,-60 998,-60 1244,864 884,864" fill="url(#beamC)"/>
-      </g>
-      <!-- soft bloom where they cross -->
-      <ellipse cx="800" cy="470" rx="360" ry="300" fill="url(#core)" filter="url(#softer)"/>
-
-      <!-- floor reflection smears -->
-      <g filter="url(#softer)" opacity="0.5">
-        <ellipse cx="549" cy="856" rx="150" ry="34" fill="rgba(240,190,120,0.5)"/>
-        <ellipse cx="802" cy="872" rx="170" ry="38" fill="rgba(226,150,152,0.5)"/>
-        <ellipse cx="1064" cy="856" rx="150" ry="34" fill="rgba(150,180,206,0.5)"/>
-      </g>
-
-      <g id="particles"></g>
+      <g id="scene"></g>
     </svg>
 
-    <div id="floorsheen"></div>
-    <div id="vignette"></div>
+    <div id="bloom"></div>
     <div id="grain"></div>
 
     <div class="copy">
       <div class="eyebrow">Jenny's Creative Lab <span class="dot">&bull;</span> Album Review</div>
       <h1>boygenius</h1>
       <div class="sub">the record</div>
+      <div class="kicker">Three voices, one band — and one of the decade's quietly radical debuts.</div>
     </div>
   </div>
 
   <script>
     const NS='http://www.w3.org/2000/svg';
-    const g=document.getElementById('particles');
-    function rnd(a,b){return a+Math.random()*(b-a);}
-    for(let i=0;i<130;i++){
-      // bias particles toward the central lit column
-      const cx=rnd(0,1600), cy=rnd(0,900);
-      const centerBias=1-Math.min(1,Math.abs(cx-800)/620);      // brighter near center
-      const heightBias=1-Math.min(1,cy/900)*0.5;
-      const op=(0.05+Math.random()*0.5)*centerBias*heightBias;
-      const c=document.createElementNS(NS,'circle');
-      c.setAttribute('cx',cx.toFixed(1));c.setAttribute('cy',cy.toFixed(1));
-      c.setAttribute('r',(Math.random()*1.8+0.4).toFixed(2));
-      c.setAttribute('fill','rgba(255,244,224,'+op.toFixed(3)+')');
-      g.appendChild(c);
+    const scene=document.getElementById('scene');
+    const el=(n,a)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e;};
+    const shade=(hex,amt)=>{const c=hex.replace('#','');const n=parseInt(c,16);let r=(n>>16)+amt,g=((n>>8)&255)+amt,b=(n&255)+amt;r=Math.max(0,Math.min(255,r));g=Math.max(0,Math.min(255,g));b=Math.max(0,Math.min(255,b));return '#'+((r<<16)|(g<<8)|b).toString(16).padStart(6,'0');};
+    const arc=(cx,cy,r,a0,a1)=>{const p0=[cx+r*Math.cos(a0*Math.PI/180),cy+r*Math.sin(a0*Math.PI/180)],p1=[cx+r*Math.cos(a1*Math.PI/180),cy+r*Math.sin(a1*Math.PI/180)],large=(a1-a0)%360>180?1:0;return `M ${p0[0]} ${p0[1]} A ${r} ${r} 0 ${large} 1 ${p1[0]} ${p1[1]}`;};
+
+    const CX=1120, CY=452, R=336, ROT=-8;
+
+    // ---- photoreal vinyl (subject) ----
+    function vinyl(){
+      const g=el('g',{transform:`rotate(${ROT} ${CX} ${CY})`});
+      const uid='rec';
+      const defs=el('defs',{});
+      const body=el('radialGradient',{id:uid+'b',cx:'50%',cy:'50%',r:'50%'});
+      body.appendChild(el('stop',{offset:'0%','stop-color':'#20201f'}));
+      body.appendChild(el('stop',{offset:'62%','stop-color':'#111112'}));
+      body.appendChild(el('stop',{offset:'100%','stop-color':'#060607'}));
+      defs.appendChild(body);
+      const spec=el('radialGradient',{id:uid+'s',cx:'34%',cy:'24%',r:'62%'});
+      spec.appendChild(el('stop',{offset:'0%','stop-color':'rgba(255,252,245,0.55)'}));
+      spec.appendChild(el('stop',{offset:'32%','stop-color':'rgba(255,248,232,0.12)'}));
+      spec.appendChild(el('stop',{offset:'60%','stop-color':'rgba(255,248,232,0)'}));
+      defs.appendChild(spec);
+      const lab=el('radialGradient',{id:uid+'l',cx:'38%',cy:'30%',r:'72%'});
+      lab.appendChild(el('stop',{offset:'0%','stop-color':shade('#E6D8BC',22)}));
+      lab.appendChild(el('stop',{offset:'72%','stop-color':'#E6D8BC'}));
+      lab.appendChild(el('stop',{offset:'100%','stop-color':shade('#E6D8BC',-30)}));
+      defs.appendChild(lab);
+      g.appendChild(defs);
+
+      scene.appendChild(el('ellipse',{cx:CX,cy:CY+R*0.98,rx:R*0.95,ry:R*0.19,fill:'#4a3f2c','fill-opacity':0.22,filter:'url(#softsh)'}));
+      g.appendChild(el('circle',{cx:CX,cy:CY,r:R,fill:`url(#${uid}b)`}));
+      const gg=el('g',{});const n=44;
+      for(let i=0;i<n;i++){const rr=R*0.335+(R*0.63)*(i/n);gg.appendChild(el('circle',{cx:CX,cy:CY,r:rr,fill:'none',stroke:'#000','stroke-opacity':(i%2?0.55:0.30),'stroke-width':R*0.0042}));if(i%2===0)gg.appendChild(el('circle',{cx:CX,cy:CY,r:rr+R*0.0016,fill:'none',stroke:'#fff','stroke-opacity':0.04,'stroke-width':R*0.0022}));}
+      g.appendChild(gg);
+      g.appendChild(el('circle',{cx:CX,cy:CY,r:R,fill:`url(#${uid}s)`}));
+      const lr=R*0.325;
+      g.appendChild(el('circle',{cx:CX,cy:CY,r:lr,fill:`url(#${uid}l)`}));
+      g.appendChild(el('circle',{cx:CX,cy:CY,r:lr,fill:'none',stroke:'#000','stroke-opacity':0.14,'stroke-width':R*0.006}));
+      g.appendChild(el('circle',{cx:CX,cy:CY,r:lr*0.60,fill:'none',stroke:'#000','stroke-opacity':0.08,'stroke-width':R*0.004}));
+      g.appendChild(el('circle',{cx:CX,cy:CY,r:R*0.018,fill:'#FBF8F1'}));
+      g.appendChild(el('circle',{cx:CX,cy:CY,r:R-1,fill:'none',stroke:'#000','stroke-opacity':0.5,'stroke-width':2}));
+      g.appendChild(el('path',{d:arc(CX,CY,R-2,200,320),fill:'none',stroke:'rgba(255,252,245,0.55)','stroke-width':2.4,'stroke-linecap':'round'}));
+      scene.appendChild(g);
     }
+    vinyl();
+
+    // ---- prismatic rainbow sweeping across the record (the hook) ----
+    // clip the vivid part to the disc so it reads as light refracting on vinyl
+    const clip=el('clipPath',{id:'disc'});
+    clip.appendChild(el('circle',{cx:CX,cy:CY,r:R}));
+    scene.appendChild(clip);
+
+    // faint rainbow across the whole frame (airy)
+    const bandGroupWide=el('g',{transform:`translate(${CX} ${CY}) rotate(-33)`,filter:'url(#rbblur)',opacity:0.28});
+    bandGroupWide.appendChild(el('rect',{x:-1300,y:-120,width:2600,height:240,fill:'url(#spectrum)'}));
+    scene.appendChild(bandGroupWide);
+
+    // vivid rainbow clipped to the disc
+    const bandGroup=el('g',{'clip-path':'url(#disc)'});
+    const inner=el('g',{transform:`translate(${CX} ${CY}) rotate(-33)`,filter:'url(#rbblur)',opacity:0.9});
+    inner.appendChild(el('rect',{x:-700,y:-118,width:1400,height:236,fill:'url(#spectrum)'}));
+    bandGroup.appendChild(inner);
+    scene.appendChild(bandGroup);
+
+    // thin bright incoming beam (prism feel)
+    const beam=el('g',{transform:`translate(${CX} ${CY}) rotate(-33)`,filter:'url(#beamblur)',opacity:0.7});
+    beam.appendChild(el('rect',{x:-1300,y:-3,width:1400,height:6,fill:'rgba(255,255,255,0.9)'}));
+    scene.appendChild(beam);
+
+    // small specular sparkle where beam meets the disc edge
+    scene.appendChild(el('circle',{cx:CX-R*0.62,cy:CY-R*0.5,r:7,fill:'#fff','fill-opacity':0.9,filter:'url(#beamblur)'}));
+
     const svgGrain="data:image/svg+xml;utf8,"+encodeURIComponent(
       "<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'>"+
       "<filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/>"+
