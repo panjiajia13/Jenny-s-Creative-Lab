@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<style>
+  @font-face{font-family:'Fraunces';src:url('../assets/fonts/Fraunces.ttf') format('truetype');font-weight:400 900;font-style:normal;font-display:block;}
+  @font-face{font-family:'Fraunces';src:url('../assets/fonts/Fraunces-Italic.ttf') format('truetype');font-weight:400 900;font-style:italic;font-display:block;}
+  @font-face{font-family:'Hanken Grotesk';src:url('../assets/fonts/HankenGrotesk.ttf') format('truetype');font-weight:300 800;font-style:normal;font-display:block;}
+  :root{--cream:#F2ECDD; --cognac:#C77D4A; --pewter:#A79C88;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{background:#000;}
+  #stage{position:relative;width:1600px;height:900px;overflow:hidden;
+    font-family:'Hanken Grotesk',sans-serif;color:var(--cream);
+    background:
+      radial-gradient(90% 70% at 50% 2%, #241a12 0%, #140f0a 40%, #0A0806 100%);}
+  svg.light{position:absolute;inset:0;mix-blend-mode:screen;}
+  #floorsheen{position:absolute;left:0;right:0;bottom:0;height:230px;pointer-events:none;
+    background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(20,14,9,.35) 60%, rgba(8,6,5,.7) 100%);}
+  #vignette{position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(110% 100% at 50% 42%, rgba(0,0,0,0) 46%, rgba(0,0,0,.5) 100%);}
+  #grain{position:absolute;inset:0;opacity:.09;mix-blend-mode:overlay;pointer-events:none;}
+  .copy{position:absolute;left:96px;bottom:92px;z-index:8;}
+  .eyebrow{font-weight:700;font-size:19px;letter-spacing:.34em;text-transform:uppercase;color:var(--cognac);margin-bottom:22px;}
+  .eyebrow .dot{color:var(--pewter);margin:0 12px;}
+  h1{font-family:'Fraunces';font-weight:500;font-size:96px;line-height:.9;letter-spacing:-.02em;color:#FBF6EC;
+     text-shadow:0 2px 40px rgba(255,226,180,.35), 0 1px 3px rgba(0,0,0,.5);}
+  .sub{font-family:'Fraunces';font-style:italic;font-weight:400;font-size:34px;color:var(--pewter);margin-top:16px;letter-spacing:.005em;}
+</style>
+</head>
+<body>
+  <div id="stage">
+    <svg class="light" width="1600" height="900" viewBox="0 0 1600 900" fill="none">
+      <defs>
+        <filter id="soft" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="26"/></filter>
+        <filter id="softer" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="46"/></filter>
+
+        <linearGradient id="beamA" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="rgba(244,198,120,0.55)"/>
+          <stop offset="42%" stop-color="rgba(240,190,120,0.24)"/>
+          <stop offset="100%" stop-color="rgba(240,190,120,0.0)"/>
+        </linearGradient>
+        <linearGradient id="beamB" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="rgba(230,152,156,0.52)"/>
+          <stop offset="42%" stop-color="rgba(226,150,152,0.22)"/>
+          <stop offset="100%" stop-color="rgba(226,150,152,0.0)"/>
+        </linearGradient>
+        <linearGradient id="beamC" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="rgba(150,182,208,0.50)"/>
+          <stop offset="42%" stop-color="rgba(150,180,206,0.22)"/>
+          <stop offset="100%" stop-color="rgba(150,180,206,0.0)"/>
+        </linearGradient>
+
+        <radialGradient id="haze" cx="50%" cy="0%" r="70%">
+          <stop offset="0%" stop-color="rgba(255,232,190,0.34)"/>
+          <stop offset="55%" stop-color="rgba(255,224,180,0.06)"/>
+          <stop offset="100%" stop-color="rgba(255,224,180,0)"/>
+        </radialGradient>
+        <radialGradient id="core" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="rgba(255,244,224,0.55)"/>
+          <stop offset="45%" stop-color="rgba(255,228,190,0.16)"/>
+          <stop offset="100%" stop-color="rgba(255,228,190,0)"/>
+        </radialGradient>
+      </defs>
+
+      <!-- upper haze / light source -->
+      <ellipse cx="800" cy="20" rx="620" ry="240" fill="url(#haze)"/>
+
+      <!-- three beams braiding through a common core -->
+      <g filter="url(#soft)">
+        <polygon points="602,-60 638,-60 726,864 372,864" fill="url(#beamA)"/>
+        <polygon points="782,-60 818,-60 992,884 612,884" fill="url(#beamB)"/>
+        <polygon points="962,-60 998,-60 1244,864 884,864" fill="url(#beamC)"/>
+      </g>
+      <!-- soft bloom where they cross -->
+      <ellipse cx="800" cy="470" rx="360" ry="300" fill="url(#core)" filter="url(#softer)"/>
+
+      <!-- floor reflection smears -->
+      <g filter="url(#softer)" opacity="0.5">
+        <ellipse cx="549" cy="856" rx="150" ry="34" fill="rgba(240,190,120,0.5)"/>
+        <ellipse cx="802" cy="872" rx="170" ry="38" fill="rgba(226,150,152,0.5)"/>
+        <ellipse cx="1064" cy="856" rx="150" ry="34" fill="rgba(150,180,206,0.5)"/>
+      </g>
+
+      <g id="particles"></g>
+    </svg>
+
+    <div id="floorsheen"></div>
+    <div id="vignette"></div>
+    <div id="grain"></div>
+
+    <div class="copy">
+      <div class="eyebrow">Jenny's Creative Lab <span class="dot">&bull;</span> Album Review</div>
+      <h1>boygenius</h1>
+      <div class="sub">the record</div>
+    </div>
+  </div>
+
+  <script>
+    const NS='http://www.w3.org/2000/svg';
+    const g=document.getElementById('particles');
+    function rnd(a,b){return a+Math.random()*(b-a);}
+    for(let i=0;i<130;i++){
+      // bias particles toward the central lit column
+      const cx=rnd(0,1600), cy=rnd(0,900);
+      const centerBias=1-Math.min(1,Math.abs(cx-800)/620);      // brighter near center
+      const heightBias=1-Math.min(1,cy/900)*0.5;
+      const op=(0.05+Math.random()*0.5)*centerBias*heightBias;
+      const c=document.createElementNS(NS,'circle');
+      c.setAttribute('cx',cx.toFixed(1));c.setAttribute('cy',cy.toFixed(1));
+      c.setAttribute('r',(Math.random()*1.8+0.4).toFixed(2));
+      c.setAttribute('fill','rgba(255,244,224,'+op.toFixed(3)+')');
+      g.appendChild(c);
+    }
+    const svgGrain="data:image/svg+xml;utf8,"+encodeURIComponent(
+      "<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'>"+
+      "<filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/>"+
+      "<feColorMatrix type='saturate' values='0'/></filter>"+
+      "<rect width='260' height='260' filter='url(#n)'/></svg>");
+    document.getElementById('grain').style.background="url(\""+svgGrain+"\")";
+  </script>
+</body>
+</html>
